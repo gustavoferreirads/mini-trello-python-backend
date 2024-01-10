@@ -1,0 +1,35 @@
+Boards:
+  TableName: Boards
+  KeySchema:
+    - AttributeName: id
+      KeyType: HASH
+  AttributeDefinitions:
+    - AttributeName: id
+      AttributeType: S
+  ProvisionedThroughput:
+    ReadCapacityUnits: 1
+    WriteCapacityUnits: 1
+
+Columns:
+  TableName: Columns
+  KeySchema:
+    - AttributeName: id
+      KeyType: HASH
+  AttributeDefinitions:
+    - AttributeName: id
+      AttributeType: S
+  ProvisionedThroughput:
+    ReadCapacityUnits: 1
+    WriteCapacityUnits: 1
+
+Cards:
+  TableName: Cards
+  KeySchema:
+    - AttributeName: id
+      KeyType: HASH
+  AttributeDefinitions:
+    - AttributeName: id
+      AttributeType: S
+  ProvisionedThroughput:
+    ReadCapacityUnits: 1
+    WriteCapacityUnits: 1
