@@ -146,63 +146,6 @@ class CardService:
             print(f"Error moving card: {e}")
             return None
 
-    @staticmethod
-    def move_card_transact(card_id, to_card_id, column_id):
-
-        try:
-            target_card = CardService.get_card(to_card_id)
-            if not target_card:
-                print("Target card not found")
-                return None
-
-            origin_card = CardService.get_card(card_id)
-            if not origin_card:
-                print("Origin card not found")
-                return None
-
-            target_position = target_card['pos']
-            to_column_id = target_card['column_id']
-            origin_column_id = origin_card['column_id']
-
-
-            transact_items = [
-                {
-                    'Update': {
-                        'TableName': CardService.TABLE_NAME,
-                        'Key': {'id': {'S': card_id}},
-                        'UpdateExpression': "set pos = :p, column_id = :c",
-                        'ExpressionAttributeValues': {
-                            ':p': {'N': str(target_position)},
-                            ':c': {'S': to_column_id}
-                        }
-                    }
-                }
-            ]
-
-
-            if origin_column_id != to_column_id:
-                response = dynamodb.scan(
-                    TableName=CardService.TABLE_NAME,
-                    FilterExpression="column_id = :c AND pos >= :p",
-                    ExpressionAttributeValues={':c': {'S': origin_column_id}, ':p': {'N': str(target_position)}}
-                )
-                for item in response['Items']:
-                    new_position = int(item['pos']['N']) + 1
-                    transact_items.append({
-                        'Update': {
-                            'TableName': CardService.TABLE_NAME,
-                            'Key': {'id': item['id']},
-                            'UpdateExpression': "set pos = :p",
-                            'ExpressionAttributeValues': {':p': {'N': str(new_position)}}
-                        }
-                    })
-
-
-            dynamodb.transact_write_items(TransactItems=transact_items)
-            return True
-        except ClientError as e:
-            print(f"Error moving card: {e}")
-            return False
 
     @staticmethod
     def _update_card_positions(column_id, start_position):

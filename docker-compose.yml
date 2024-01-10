@@ -9,7 +9,4 @@ services:
     #    command: ["python", "init_dynamodb.py"]
     command: [ "-jar", "DynamoDBLocal.jar", "-sharedDb", "-dbPath /home/dynamodblocal" ]
 
-#
-#docker run --rm -d --name dynamodb -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal
-##docker run -e AWS_ACCESS_KEY_ID=your_access_key -e AWS_SECRET_ACCESS_KEY=your_secret_key my-python-app
-#docker run -e DYNAMODB_PORT=8000
+
