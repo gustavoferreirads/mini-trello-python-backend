@@ -62,6 +62,17 @@ It is built using Flask in conjunction with Graphene for GraphQL support, FastAP
    source venv/bin/activate  # For Unix-like systems
    .\venv\Scripts\activate  # For Windows
    pip install -r requirements.txt
+```sh
+python db/init_dynamodb.py
+```
+   
+
+### Database Initialization and Migrations
+
+The `init_dynamodb.py` script within the `db` directory is designed to set up the necessary tables in the DynamoDB database. This script acts as a migration manager, ensuring that your database schema is initialized correctly and can also be used to apply incremental changes or rollbacks to the database schema.
+
+To create the tables in your DynamoDB instance, run the following command:
+
 
 ## Contributing
 
