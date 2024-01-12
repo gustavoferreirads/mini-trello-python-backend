@@ -2,13 +2,12 @@
 
 This is the backend component of a Trello clone project, a task management application similar to Trello. 
 
-It is built using Flask in conjunction with Graphene for GraphQL support, FastAPI for high-performance API routes, and DynamoDB for scalable and flexible data storage. Docker is used to encapsulate the environment and run a local instance of DynamoDB.
+It is built using Flask in conjunction with Graphene for GraphQL support, Flask, and DynamoDB for scalable and flexible data storage. Docker is used to encapsulate the environment and run a local instance of DynamoDB.
 
 ## Technologies Used
 
 - **Flask**: A lightweight WSGI web application framework in Python that's easy to get started with but powerful enough for production use.
 - **Graphene**: A Python library for building GraphQL APIs, making it simple to define the data schema and resolve queries.
-- **FastAPI**: A modern, fast web framework for building APIs with Python 3.7+, with automatic data validation and interactive API documentation.
 - **DynamoDB**: A NoSQL database offered by Amazon Web Services that provides quick and predictable performance with seamless scalability.
 - **Docker**: A platform for developing, shipping, and running applications in isolated containers, allowing for easy deployment and scaling.
 
@@ -62,11 +61,17 @@ It is built using Flask in conjunction with Graphene for GraphQL support, FastAP
    source venv/bin/activate  # For Unix-like systems
    .\venv\Scripts\activate  # For Windows
    pip install -r requirements.txt
-```sh
-python db/init_dynamodb.py
-```
    
 
+### Running the Services
+
+1. **Start the Services:**
+   To start the DynamoDB Local navigate to the root directory of the project and run:
+
+   ```sh
+   docker-compose up --build
+   
+  
 ### Database Initialization and Migrations
 
 The `init_dynamodb.py` script within the `db` directory is designed to set up the necessary tables in the DynamoDB database. This script acts as a migration manager, ensuring that your database schema is initialized correctly and can also be used to apply incremental changes or rollbacks to the database schema.

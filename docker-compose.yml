@@ -1,12 +1,11 @@
-version: '3'
-
+version: '3.8'
 services:
-  dynamodb_local:
-    image: amazon/dynamodb-local
-
-    ports:
-      - "8000:8000"
-    #    command: ["python", "init_dynamodb.py"]
-    command: [ "-jar", "DynamoDBLocal.jar", "-sharedDb", "-dbPath /home/dynamodblocal" ]
-
-
+ dynamodb-local:
+   command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+   image: "amazon/dynamodb-local:latest"
+   container_name: dynamodb-local
+   ports:
+     - "8000:8000"
+   volumes:
+     - "./docker/dynamodb:/home/dynamodblocal/data"
+   working_dir: /home/dynamodblocal

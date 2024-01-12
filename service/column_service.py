@@ -92,9 +92,7 @@ class ColumnService:
             target_pos = target_column['pos']
             oring_pos = origin_column['pos']
             ColumnService.update_column(column_id, origin_column['title'], target_pos)
-            print(ColumnService.get_column(column_id))
             ColumnService.update_column(to_column_id,  target_column['title'],oring_pos)
-            print(ColumnService.get_column(to_column_id))
 
         except ClientError as e:
             print(f"Error moving column: {e}")

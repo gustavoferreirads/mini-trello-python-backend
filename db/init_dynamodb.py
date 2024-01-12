@@ -16,8 +16,8 @@ def create_tables(config_file):
             KeySchema=properties['KeySchema'],
             AttributeDefinitions=properties['AttributeDefinitions'],
             ProvisionedThroughput={
-                'ReadCapacityUnits': 1,
-                'WriteCapacityUnits': 1
+                'ReadCapacityUnits': 10,
+                'WriteCapacityUnits': 10
             }
         )
 
